@@ -10,6 +10,11 @@ Description: Keyhole files present a few issues when attempting to
   load them into R. Multi-layer files default to the first layer with
   sf. .kmz files cannot be read in with the default gdal installation
   provided with sf.
-License: What license it uses
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    sf,
+    fs,
+    utils
+RoxygenNote: 6.1.1
