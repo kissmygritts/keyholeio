@@ -10,15 +10,17 @@
 #'
 #' @examples
 handle_kmz <- function (kmz) {
-  # copy, zip, unzip kmz hack
-  fs::file_copy(kmz, '.temp.kml.zip', overwrite = T)
-  utils::unzip('.temp.kml.zip', overwrite = T)
+  # temporary files
+  target_file <- normalizePath(paste0(tempdir(), '/', 'temp.zip'))
+  temp_kml_file <- normalizePath(paste0(tempdir(), '/', 'doc.kml'))
+
+  # copy, zip, unzip kmz hack write to tempdir()
+  # temp dir is cleaned automatically after the R session ends
+  fs::file_copy(kmz, target_file, overwrite = T)
+  utils::unzip(target_file, files = 'doc.kml', exdir = tempdir(), overwrite = T)
 
   # generate output
-  sf_out <- handle_kml('doc.kml')
-
-  # cleanup temp files
-  cleanup_after(c('.temp.kml.zip', 'doc.kml'))
+  sf_out <- handle_kml(temp_kml_file)
 
   return(sf_out)
 }
