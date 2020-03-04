@@ -5,7 +5,7 @@
 
 The goal of keyholeio is to overcome some of the issues when reading `.kmz` and `.kml` files into R:
 
-* `.kmz` files cannot be read into R with some installations of `sf`
+* `.kmz` files cannot be read into R with some installations of `sf` and `gdal`
 * only the first layer of multi-layer `.kml` and `.kmz` are read into R
 
 ## Installation
@@ -23,8 +23,6 @@ There is only one function to use in `keyholeio`, `read_keyhole`. It will read `
 ``` r
 library(keyholeio)
 library(mapview)
-library(magrittr)
-
 library(magrittr)
 
 read_keyhole('data/routes.kml') %>%
